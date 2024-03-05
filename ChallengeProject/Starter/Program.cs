@@ -286,8 +286,33 @@ do
             break;
 
         case "3":
-            // Ensure animal ages and physical descriptions are complete
-            Console.WriteLine("Challenge Project - please check back soon to see progress.");
+            // Loop through all pets
+            for (int i = 0; i < maxPets; i++)
+            {
+                if (ourAnimals[i, 0] != "ID #: ")
+                {
+                    // get the pet's age if it's not set
+                    if (ourAnimals[i, 2] == "Age: ?")
+                    {
+                        do
+                        {
+                            Console.WriteLine($"Enter an age for {ourAnimals[i, 0]}");
+                            readResult = Console.ReadLine();
+                            if (readResult != null)
+                            {
+                                animalAge = readResult;
+                                validEntry = int.TryParse(animalAge, out petAge);
+                            }
+                        } while (validEntry == false);
+
+                        // store the pet age in the ourAnimals array (zero based)
+                        ourAnimals[i, 2] = "Age: " + animalAge;
+                    }
+                }
+            }
+
+            // End of verifications message
+            Console.WriteLine("Age and physical description fields are complete for all of our friends. .");
             Console.WriteLine("Press the Enter key to continue.");
             readResult = Console.ReadLine();
             break;
