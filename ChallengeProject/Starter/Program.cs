@@ -308,6 +308,24 @@ do
                         // store the pet age in the ourAnimals array (zero based)
                         ourAnimals[i, 2] = "Age: " + animalAge;
                     }
+                    // get the pet's physical description if it's not set
+                    if (ourAnimals[i, 4] == "Physical description: ")
+                    {
+                        validEntry = false;
+                        do
+                        {
+                            Console.WriteLine($"Enter a physical description for {ourAnimals[i, 0]} (size, color, breed, gender, weight, housebroken)");
+                            readResult = Console.ReadLine();
+                            if (readResult != null && readResult.Trim() != "")
+                            {
+                                animalPhysicalDescription = readResult.ToLower();
+                                validEntry = true;
+                            }
+                        } while (validEntry == false);
+
+                        // store the pet physical description in the ourAnimals array (zero based)
+                        ourAnimals[i, 4] = "Physical description: " + animalPhysicalDescription;
+                    }
                 }
             }
 
